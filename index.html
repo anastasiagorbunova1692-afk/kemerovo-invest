@@ -205,18 +205,30 @@ section { padding: 140px 0; }
 }
 
 /* ===================== METRICS ===================== */
-#metrics {
-  background: var(--light);
-  padding: 100px 0;
-  min-height: 70vh;
-  display: flex; align-items: center;
+#metrics { background: #07090F; padding: 140px 0 0; }
+.metrics-top-title {
+  font-size: 48px; font-weight: 700;
+  color: var(--white); margin-bottom: 60px;
+  line-height: 1.2; word-break: keep-all;
 }
+.metrics-blocks {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 0;
+}
+.metrics-block-photo {
+  width: 100%; height: 320px; object-fit: cover; display: block;
+}
+.metrics-block-text { padding: 28px 0 0; }
+.metrics-block-text h3 {
+  font-size: 20px; font-weight: 700; color: var(--white);
+  margin-bottom: 12px; word-break: keep-all;
+}
+.metrics-block-text p { font-size: 15px; color: var(--muted); line-height: 1.7; }
 .metrics-grid {
   display: flex; align-items: center; justify-content: center;
-  gap: 0;
+  gap: 0; background: var(--light); margin-top: 60px;
 }
 .metric-item {
-  flex: 1; text-align: center; padding: 40px;
+  flex: 1; text-align: center; padding: 52px 40px;
   border-right: 1px solid #ddd;
 }
 .metric-item:last-child { border-right: none; }
@@ -232,6 +244,8 @@ section { padding: 140px 0; }
 }
 
 @media (max-width: 768px) {
+  .metrics-top-title { font-size: 30px; }
+  .metrics-blocks { grid-template-columns: 1fr; }
   .metrics-grid { flex-direction: column; }
   .metric-item { border-right: none; border-bottom: 1px solid #ddd; }
   .metric-num { font-size: 48px; }
@@ -832,19 +846,37 @@ input[type=range]::-webkit-slider-thumb {
 <!-- ===================== METRICS ===================== -->
 <section id="metrics">
   <div class="container">
-    <div class="metrics-grid">
-      <div class="metric-item">
-        <span class="metric-num" data-target="191000000" data-suffix=" ₽">0</span>
-        <span class="metric-label">Общий объём инвестиций</span>
+    <span class="label">О Проекте</span>
+    <h2 class="metrics-top-title">Спортивно-развлекательный комплекс в г. Кемерово</h2>
+    <div class="metrics-blocks">
+      <div>
+        <img src="beach-1.jpg" alt="Центр пляжного спорта" class="metrics-block-photo">
+        <div class="metrics-block-text">
+          <h3>Центр пляжного спорта</h3>
+          <p>5 крытых кортов с беспыльным песком. Современные раздевалки, Face ID вход, аренда кортов, детские тренировки и турниры.</p>
+        </div>
       </div>
-      <div class="metric-item">
-        <span class="metric-num" data-target="22" data-suffix="%">0</span>
-        <span class="metric-label">Годовая доходность</span>
+      <div>
+        <img src="karting-1.jpg" alt="Картинг" class="metrics-block-photo">
+        <div class="metrics-block-text">
+          <h3>Картинг с многоуровневой трассой</h3>
+          <p>Электрокарты с разгоном до 100 км/ч. Многоуровневая трасса, хронометраж, заезды для всех возрастов.</p>
+        </div>
       </div>
-      <div class="metric-item">
-        <span class="metric-num" data-target="2500" data-suffix=" М²">0</span>
-        <span class="metric-label">Площадь здания</span>
-      </div>
+    </div>
+  </div>
+  <div class="metrics-grid">
+    <div class="metric-item">
+      <span class="metric-num" data-target="191000000" data-suffix=" ₽">0</span>
+      <span class="metric-label">Общий объём инвестиций</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-num" data-target="22" data-suffix="%">0</span>
+      <span class="metric-label">Годовая доходность</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-num" data-target="2500" data-suffix=" М²">0</span>
+      <span class="metric-label">Площадь здания</span>
     </div>
   </div>
 </section>
