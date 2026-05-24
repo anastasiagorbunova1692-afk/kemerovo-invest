@@ -1566,6 +1566,8 @@ input[type=range]::-webkit-slider-thumb {
 </footer>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+
 // ===================== CURSOR =====================
 const dot = document.getElementById('cursor-dot');
 const ring = document.getElementById('cursor-ring');
@@ -1760,7 +1762,7 @@ const beachFinance = document.getElementById('beach-finance');
 if (beachFinance) beachBarObs.observe(beachFinance);
 
 // ===================== ACCORDION =====================
-function toggleAccordion(header) {
+window.toggleAccordion = function(header) {
   const item = header.parentElement;
   const body = item.querySelector('.accordion-body');
   const inner = body.querySelector('.accordion-body-inner');
@@ -1774,7 +1776,7 @@ function toggleAccordion(header) {
 }
 
 // ===================== AUDIENCE TOGGLE =====================
-function toggleAudience(card) {
+window.toggleAudience = function(card) {
   const body = card.querySelector('.audience-body');
   const inner = card.querySelector('.audience-body-inner');
   const toggle = card.querySelector('.audience-toggle');
@@ -1786,7 +1788,7 @@ function toggleAudience(card) {
 }
 
 // ===================== TABS =====================
-function switchTab(btn, targetId) {
+window.switchTab = function(btn, targetId) {
   const group = btn.closest('.tabs');
   group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   group.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
@@ -1940,6 +1942,8 @@ gsap.utils.toArray('.project-card').forEach((el, i) => {
     scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
   });
 });
+
+}); // end DOMContentLoaded
 </script>
 </body>
 </html>
