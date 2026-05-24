@@ -791,6 +791,135 @@ input[type=range]::-webkit-slider-thumb {
 
 /* clip-path reveal */
 .reveal { clip-path: inset(80px 0 0 0); opacity: 0; }
+
+/* ===================== BURGER ===================== */
+.burger {
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 44px; height: 44px;
+  background: none; border: none; cursor: pointer; padding: 8px;
+}
+.burger span {
+  display: block; height: 2px; background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===================== MOBILE MENU ===================== */
+#mobile-menu {
+  display: none;
+  position: fixed; inset: 0; z-index: 850;
+  background: rgba(7,9,15,0.97);
+  backdrop-filter: blur(20px);
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 32px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+#mobile-menu.open {
+  opacity: 1; pointer-events: all;
+}
+.mobile-link {
+  font-size: 22px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--white); text-decoration: none;
+  min-height: 44px; display: flex; align-items: center;
+  transition: color 0.3s;
+}
+.mobile-link:hover { color: var(--blue); }
+
+/* ===================== MOBILE OVERRIDES ===================== */
+@media (max-width: 768px) {
+  /* Show burger, hide desktop links */
+  .burger { display: flex; }
+  #mobile-menu { display: flex; }
+  .nav-links { display: none !important; }
+  nav { padding: 0 20px; }
+
+  /* Sections padding */
+  section { padding: 60px 0; }
+  .container { padding: 0 20px; }
+
+  /* Hero */
+  .hero-photo { display: none; }
+  .hero-content { width: 100%; padding: 100px 20px 0; }
+  #hero-h1 { font-size: 36px !important; }
+  .hero-metrics { flex-direction: column; }
+  .hero-metric { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .hero-metric:last-child { border-bottom: none; }
+  .btn { min-height: 44px; display: inline-flex; align-items: center; }
+
+  /* Metrics section */
+  .metrics-top-title { font-size: 26px; }
+  .metrics-blocks { grid-template-columns: 1fr; }
+  .metric-num { font-size: 48px; }
+  .metrics-grid { flex-direction: column; }
+  .metric-item { border-right: none; border-bottom: 1px solid #ddd; width: 100%; }
+  .metric-item:last-child { border-bottom: none; }
+
+  /* All 2-col grids → 1 col */
+  .cards-grid { grid-template-columns: 1fr; }
+  .building-layout { grid-template-columns: 1fr; }
+  .building-photo { height: 240px; }
+  .liquidity-compare { grid-template-columns: 1fr; }
+  .market-stats { grid-template-columns: 1fr; }
+  .market-num { font-size: 48px; }
+  .audience-cards { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item { height: 240px; }
+  .donut-container { grid-template-columns: 1fr; }
+  .karting-photos { grid-template-columns: 1fr; }
+  .mgmt-cards { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+
+  /* Beach stats */
+  .beach-stats { flex-direction: column; gap: 20px; }
+  .beach-stat-num { font-size: 48px; }
+
+  /* Tabs — min touch height */
+  .tab-btn { min-height: 44px; padding: 12px 16px; font-size: 12px; }
+
+  /* KPI row */
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+
+  /* Calculator */
+  .calc-wrap { padding: 24px 16px; }
+  .calc-results { grid-template-columns: 1fr 1fr; }
+  input[type=range] { width: 100%; }
+
+  /* Tables */
+  .capex-table, .data-table, .inv-table, .roi-table, .finance-table {
+    display: block; overflow-x: auto; white-space: nowrap; font-size: 13px;
+  }
+  .capex-table td, .capex-table th,
+  .data-table td, .data-table th,
+  .inv-table td,
+  .roi-table td, .roi-table th,
+  .finance-table td { font-size: 13px; padding: 10px 12px; }
+
+  /* Team photos — horizontal scroll */
+  .team-photos { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .team-photo { flex: 0 0 70vw; height: 240px; }
+
+  /* Contact — hide photo, show only text */
+  .contact-photo { display: none; }
+  #contact { flex-direction: column; min-height: auto; }
+  .contact-content { padding: 60px 20px; }
+  .contact-name { font-size: 24px; }
+
+  /* Accordion headers */
+  .accordion-header { min-height: 44px; }
+
+  /* Section title size */
+  .section-title { font-size: 26px; margin-bottom: 36px; }
+
+  /* Capitalization chart */
+  .cap-chart-wrap { padding: 16px; }
+
+  /* Karting video */
+  .karting-video { max-height: 280px; }
+}
 </style>
 </head>
 <body>
@@ -816,7 +945,23 @@ input[type=range]::-webkit-slider-thumb {
     <li><a href="#team">Команда</a></li>
     <li><a href="#contact">Контакт</a></li>
   </ul>
+  <button class="burger" id="burger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile menu overlay -->
+<div id="mobile-menu">
+  <a href="#project" class="mobile-link">Проект</a>
+  <a href="#building" class="mobile-link">Здание</a>
+  <a href="#market" class="mobile-link">Рынок</a>
+  <a href="#audience" class="mobile-link">Аудитория</a>
+  <a href="#beach" class="mobile-link">Пляжный спорт</a>
+  <a href="#karting" class="mobile-link">Картинг</a>
+  <a href="#finances" class="mobile-link">Финансы</a>
+  <a href="#team" class="mobile-link">Команда</a>
+  <a href="#contact" class="mobile-link">Контакт</a>
+</div>
 
 <!-- ===================== HERO ===================== -->
 <section id="hero">
@@ -1940,6 +2085,24 @@ gsap.utils.toArray('.project-card').forEach((el, i) => {
     delay: i * 0.12,
     ease: 'power3.out',
     scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+  });
+});
+
+// ===================== BURGER MENU =====================
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobile-menu');
+
+burger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
   });
 });
 
