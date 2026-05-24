@@ -344,7 +344,8 @@ section { padding: 140px 0; }
 }
 .liq-val { font-weight: 500; color: var(--dark); }
 .chart-container {
-  background: var(--dark); border-radius: 2px; padding: 32px; margin-bottom: 32px;
+  background: var(--dark); border-radius: 2px; padding: 20px 24px; margin-bottom: 24px;
+  height: 340px;
 }
 .data-table {
   width: 100%; border-collapse: collapse; font-size: 14px;
@@ -973,9 +974,9 @@ input[type=range]::-webkit-slider-thumb {
         <div class="liq-row"><span>Доходность</span><span class="liq-val">600–1 350 ₽/м²</span></div>
       </div>
     </div>
-    <h3 style="font-size:20px;font-weight:700;color:var(--dark);margin-bottom:24px;">Рост стоимости 1 м² коммерческой недвижимости в г. Кемерово</h3>
+    <h3 style="font-size:20px;font-weight:700;color:var(--dark);margin-bottom:16px;">Рост стоимости 1 м² коммерческой недвижимости в г. Кемерово</h3>
     <div class="chart-container">
-      <canvas id="liquidityChart" height="280"></canvas>
+      <canvas id="liquidityChart"></canvas>
     </div>
     <div style="overflow-x:auto;">
       <table class="data-table">
@@ -1834,6 +1835,7 @@ function switchTab(btn, targetId) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { labels: { color: 'rgba(255,255,255,0.6)', font: { family: 'Inter', size: 12 } } },
         tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString('ru-RU') + ' ₽' } }
