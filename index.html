@@ -526,6 +526,8 @@ section { padding: 140px 0; }
   color: #888; border-bottom: 1px solid #ddd;
 }
 .capex-table td { padding: 11px 16px; border-bottom: 1px solid #eee; color: #333; }
+#kart-capex .capex-table td,
+#kart-capex .capex-table th { color: #ffffff; border-bottom-color: rgba(255,255,255,0.1); }
 .capex-table tr.total td { font-weight: 700; background: rgba(30,144,255,0.06); color: var(--dark); }
 .capex-table tr:hover td { background: rgba(30,144,255,0.03); }
 
@@ -1277,8 +1279,8 @@ input[type=range]::-webkit-slider-thumb {
       </div>
       <div id="kart-capex" class="tab-content">
         <div style="overflow-x:auto;">
-          <table class="capex-table" style="color:var(--muted);">
-            <thead><tr style="color:var(--muted);"><th style="color:var(--muted);">Категория</th><th style="color:var(--muted);">Подкатегория</th><th style="color:var(--muted);">Сумма, руб</th></tr></thead>
+          <table class="capex-table" style="color:#ffffff;">
+            <thead><tr><th style="color:#ffffff;">Категория</th><th style="color:#ffffff;">Подкатегория</th><th style="color:#ffffff;">Сумма, руб</th></tr></thead>
             <tbody>
               <tr><td>Основное оборудование</td><td>Машины</td><td>24 800 000</td></tr>
               <tr><td>Помещение</td><td>Проектирование</td><td>580 000</td></tr>
