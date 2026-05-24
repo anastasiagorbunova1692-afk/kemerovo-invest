@@ -1923,118 +1923,6 @@ window.toggleAccordion = function(header) {
 
 
 
-// ===================== CHARTS =====================
-// Liquidity chart
-(function() {
-  const ctx = document.getElementById('liquidityChart');
-  if (!ctx) return;
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['2021', '2022', '2023', '2024', '2025'],
-      datasets: [
-        {
-          label: 'Мин ₽/м²',
-          data: [55000, 65000, 80000, 95000, 110000],
-          backgroundColor: 'rgba(30,144,255,0.5)',
-          borderColor: 'rgba(30,144,255,0.8)',
-          borderWidth: 1
-        },
-        {
-          label: 'Макс ₽/м²',
-          data: [70000, 85000, 110000, 135000, 180000],
-          backgroundColor: ['rgba(30,144,255,0.25)','rgba(30,144,255,0.25)','rgba(30,144,255,0.25)','rgba(30,144,255,0.25)','rgba(30,144,255,0.85)'],
-          borderColor: ['rgba(30,144,255,0.5)','rgba(30,144,255,0.5)','rgba(30,144,255,0.5)','rgba(30,144,255,0.5)','rgba(30,144,255,1)'],
-          borderWidth: 1
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { labels: { color: 'rgba(255,255,255,0.6)', font: { family: 'Inter', size: 12 } } },
-        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString('ru-RU') + ' ₽' } }
-      },
-      scales: {
-        x: { ticks: { color: 'rgba(255,255,255,0.6)' }, grid: { color: 'rgba(255,255,255,0.06)' } },
-        y: {
-          ticks: { color: 'rgba(255,255,255,0.6)', callback: v => (v/1000) + 'к ₽' },
-          grid: { color: 'rgba(255,255,255,0.06)' }
-        }
-      }
-    }
-  });
-})();
-
-// Karting donut
-(function() {
-  const ctx = document.getElementById('kartingDonut');
-  if (!ctx) return;
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ['Заезды', 'Event', 'Детские тренировки'],
-      datasets: [{
-        data: [70, 20, 10],
-        backgroundColor: ['#7C5BF5', '#A47FFF', '#C9AFFF'],
-        borderColor: 'transparent',
-        borderWidth: 0
-      }]
-    },
-    options: {
-      cutout: '68%',
-      plugins: { legend: { display: false } }
-    }
-  });
-})();
-
-// Capitalization line chart
-(function() {
-  const ctx = document.getElementById('capChart');
-  if (!ctx) return;
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['2026','2027','2028','2029','2030','2031'],
-      datasets: [
-        {
-          label: 'Ликвидность активов',
-          data: [95000000, 106400000, 119168000, 133468160, 149484339, 167422460],
-          borderColor: '#1E90FF', backgroundColor: 'rgba(30,144,255,0.08)',
-          tension: 0.4, fill: false, pointRadius: 5
-        },
-        {
-          label: 'Доходы',
-          data: [42076276, 44180090, 46389094, 48708549, 51143976, 53701175],
-          borderColor: '#7C5BF5', backgroundColor: 'rgba(124,91,245,0.08)',
-          tension: 0.4, fill: false, pointRadius: 5
-        },
-        {
-          label: 'ИТОГО',
-          data: [227645460, 245677733, 265409620, 287021861, 310715725, 336715415],
-          borderColor: '#fff', backgroundColor: 'rgba(255,255,255,0.04)',
-          tension: 0.4, fill: false, pointRadius: 5
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { labels: { color: 'rgba(255,255,255,0.7)', font: { family: 'Inter' } } },
-        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString('ru-RU') + ' ₽' } }
-      },
-      scales: {
-        x: { ticks: { color: 'rgba(255,255,255,0.6)' }, grid: { color: 'rgba(255,255,255,0.06)' } },
-        y: {
-          ticks: { color: 'rgba(255,255,255,0.6)', callback: v => (v/1000000).toFixed(0) + 'М' },
-          grid: { color: 'rgba(255,255,255,0.06)' }
-        }
-      }
-    }
-  });
-})();
 
 // ===================== CALCULATOR =====================
 const slider = document.getElementById('calc-slider');
@@ -2089,6 +1977,122 @@ document.querySelectorAll('.mobile-link').forEach(link => {
 });
 
 }); // end DOMContentLoaded
+</script>
+
+<script>
+// Charts init — runs after ALL resources including CDN Chart.js are loaded
+window.addEventListener('load', function() {
+  if (typeof Chart === 'undefined') return;
+
+  // Liquidity bar chart
+  var liqCtx = document.getElementById('liquidityChart');
+  if (liqCtx) {
+    new Chart(liqCtx, {
+      type: 'bar',
+      data: {
+        labels: ['2021', '2022', '2023', '2024', '2025'],
+        datasets: [
+          {
+            label: 'Мин ₽/м²',
+            data: [55000, 65000, 80000, 95000, 110000],
+            backgroundColor: 'rgba(30,144,255,0.5)',
+            borderColor: 'rgba(30,144,255,0.8)',
+            borderWidth: 1
+          },
+          {
+            label: 'Макс ₽/м²',
+            data: [70000, 85000, 110000, 135000, 180000],
+            backgroundColor: ['rgba(30,144,255,0.25)','rgba(30,144,255,0.25)','rgba(30,144,255,0.25)','rgba(30,144,255,0.25)','rgba(30,144,255,0.85)'],
+            borderColor: ['rgba(30,144,255,0.5)','rgba(30,144,255,0.5)','rgba(30,144,255,0.5)','rgba(30,144,255,0.5)','rgba(30,144,255,1)'],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: 'rgba(255,255,255,0.6)', font: { family: 'Inter', size: 12 } } },
+          tooltip: { callbacks: { label: function(c) { return c.dataset.label + ': ' + c.parsed.y.toLocaleString('ru-RU') + ' ₽'; } } }
+        },
+        scales: {
+          x: { ticks: { color: 'rgba(255,255,255,0.6)' }, grid: { color: 'rgba(255,255,255,0.06)' } },
+          y: {
+            ticks: { color: 'rgba(255,255,255,0.6)', callback: function(v) { return (v/1000) + 'к ₽'; } },
+            grid: { color: 'rgba(255,255,255,0.06)' }
+          }
+        }
+      }
+    });
+  }
+
+  // Karting donut chart
+  var donutCtx = document.getElementById('kartingDonut');
+  if (donutCtx) {
+    new Chart(donutCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Заезды', 'Event', 'Детские тренировки'],
+        datasets: [{
+          data: [70, 20, 10],
+          backgroundColor: ['#7C5BF5', '#A47FFF', '#C9AFFF'],
+          borderColor: 'transparent',
+          borderWidth: 0
+        }]
+      },
+      options: {
+        cutout: '68%',
+        plugins: { legend: { display: false } }
+      }
+    });
+  }
+
+  // Capitalization line chart
+  var capCtx = document.getElementById('capChart');
+  if (capCtx) {
+    new Chart(capCtx, {
+      type: 'line',
+      data: {
+        labels: ['2026','2027','2028','2029','2030','2031'],
+        datasets: [
+          {
+            label: 'Ликвидность активов',
+            data: [95000000, 106400000, 119168000, 133468160, 149484339, 167422460],
+            borderColor: '#1E90FF', backgroundColor: 'rgba(30,144,255,0.08)',
+            tension: 0.4, fill: false, pointRadius: 5
+          },
+          {
+            label: 'Доходы',
+            data: [42076276, 44180090, 46389094, 48708549, 51143976, 53701175],
+            borderColor: '#7C5BF5', backgroundColor: 'rgba(124,91,245,0.08)',
+            tension: 0.4, fill: false, pointRadius: 5
+          },
+          {
+            label: 'ИТОГО',
+            data: [227645460, 245677733, 265409620, 287021861, 310715725, 336715415],
+            borderColor: '#fff', backgroundColor: 'rgba(255,255,255,0.04)',
+            tension: 0.4, fill: false, pointRadius: 5
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: 'rgba(255,255,255,0.7)', font: { family: 'Inter' } } },
+          tooltip: { callbacks: { label: function(c) { return c.dataset.label + ': ' + c.parsed.y.toLocaleString('ru-RU') + ' ₽'; } } }
+        },
+        scales: {
+          x: { ticks: { color: 'rgba(255,255,255,0.6)' }, grid: { color: 'rgba(255,255,255,0.06)' } },
+          y: {
+            ticks: { color: 'rgba(255,255,255,0.6)', callback: function(v) { return (v/1000000).toFixed(0) + 'М'; } },
+            grid: { color: 'rgba(255,255,255,0.06)' }
+          }
+        }
+      }
+    });
+  }
+});
 </script>
 </body>
 </html>
