@@ -1197,7 +1197,7 @@ input[type=range]::-webkit-slider-thumb {
     <span class="label" style="color:var(--blue);">Аудитория</span>
     <h2 class="section-title" style="color:var(--dark);">Проект для тех, кто выбирает активную жизнь</h2>
     <div class="audience-cards">
-      <div class="audience-card" onclick="toggleAudience(this)">
+      <div class="audience-card" onclick="var b=this.querySelector('.audience-body'),i=this.querySelector('.audience-body-inner'),t=this.querySelector('.audience-toggle'),o=this.classList.toggle('open');t.textContent=o?'−':'+';b.style.maxHeight=o?i.offsetHeight+'px':'0';b.style.opacity=o?'1':'0'">
         <div class="audience-header">
           <span class="audience-title">Молодёжь 18–35 лет</span>
           <span class="audience-toggle">+</span>
@@ -1208,7 +1208,7 @@ input[type=range]::-webkit-slider-thumb {
           </div>
         </div>
       </div>
-      <div class="audience-card" onclick="toggleAudience(this)">
+      <div class="audience-card" onclick="var b=this.querySelector('.audience-body'),i=this.querySelector('.audience-body-inner'),t=this.querySelector('.audience-toggle'),o=this.classList.toggle('open');t.textContent=o?'−':'+';b.style.maxHeight=o?i.offsetHeight+'px':'0';b.style.opacity=o?'1':'0'">
         <div class="audience-header">
           <span class="audience-title">Семьи с детьми</span>
           <span class="audience-toggle">+</span>
@@ -1219,7 +1219,7 @@ input[type=range]::-webkit-slider-thumb {
           </div>
         </div>
       </div>
-      <div class="audience-card" onclick="toggleAudience(this)">
+      <div class="audience-card" onclick="var b=this.querySelector('.audience-body'),i=this.querySelector('.audience-body-inner'),t=this.querySelector('.audience-toggle'),o=this.classList.toggle('open');t.textContent=o?'−':'+';b.style.maxHeight=o?i.offsetHeight+'px':'0';b.style.opacity=o?'1':'0'">
         <div class="audience-header">
           <span class="audience-title">Корпоративный сегмент</span>
           <span class="audience-toggle">+</span>
@@ -1920,17 +1920,6 @@ window.toggleAccordion = function(header) {
   }
 }
 
-// ===================== AUDIENCE TOGGLE =====================
-window.toggleAudience = function(card) {
-  const body = card.querySelector('.audience-body');
-  const inner = card.querySelector('.audience-body-inner');
-  const toggle = card.querySelector('.audience-toggle');
-  const isOpen = card.classList.contains('open');
-  card.classList.toggle('open');
-  toggle.textContent = isOpen ? '+' : '−';
-  body.style.maxHeight = isOpen ? '0' : inner.offsetHeight + 'px';
-  body.style.opacity = isOpen ? '0' : '1';
-}
 
 
 
