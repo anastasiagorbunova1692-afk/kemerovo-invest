@@ -172,7 +172,7 @@ section { padding: 140px 0; }
 }
 .hero-content {
   position: relative; z-index: 2;
-  width: 45%; padding: 0 80px;
+  width: 45%; padding: 120px 80px 0;
 }
 .hero-line {
   width: 0; height: 2px;
@@ -1657,12 +1657,20 @@ gsap.to('.hero-line', { width: 48, duration: 0.6, delay: 1.2, ease: 'power2.out'
 // Hero label fade in
 gsap.from('#hero-label', { opacity: 0, y: 20, duration: 0.8, delay: 0.4, ease: 'power3.out' });
 
-// Hero H1 word animation (no SplitText plugin — use words)
+// Hero H1 word animation
 (function animHeroH1() {
   const h1 = document.getElementById('hero-h1');
-  const text = h1.textContent;
+  const text = h1.textContent.trim();
   const words = text.split(' ');
-  h1.innerHTML = words.map(w => `<span class="hw" style="display:inline-block;overflow:hidden;"><span class="hwi" style="display:inline-block;">${w}</span></span>`).join(' ');
+  // Use flex-wrap so words align flush left without inline-block gap issues
+  h1.style.display = 'flex';
+  h1.style.flexWrap = 'wrap';
+  h1.style.columnGap = '0.28em';
+  h1.style.rowGap = '0';
+  h1.style.alignItems = 'flex-end';
+  h1.innerHTML = words.map(w =>
+    `<span class="hw" style="overflow:hidden;display:block;"><span class="hwi" style="display:block;">${w}</span></span>`
+  ).join('');
   gsap.from('.hwi', {
     y: '100%', opacity: 0,
     duration: 0.8, stagger: 0.06, delay: 0.6,
