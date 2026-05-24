@@ -1265,8 +1265,8 @@ input[type=range]::-webkit-slider-thumb {
     </div>
     <div class="tabs" style="margin-top:60px;">
       <div class="tab-buttons">
-        <button class="tab-btn active" onclick="switchTab(this, 'beach-finance')">Финансы</button>
-        <button class="tab-btn" onclick="switchTab(this, 'beach-capex')">Инвестиции CAPEX</button>
+        <button class="tab-btn active" onclick="document.querySelectorAll('#beach .tab-btn').forEach(function(b){b.classList.remove('active')});this.classList.add('active');document.querySelectorAll('#beach .tab-content').forEach(function(c){c.classList.remove('active')});document.getElementById('beach-finance').classList.add('active')">Финансы</button>
+        <button class="tab-btn" onclick="document.querySelectorAll('#beach .tab-btn').forEach(function(b){b.classList.remove('active')});this.classList.add('active');document.querySelectorAll('#beach .tab-content').forEach(function(c){c.classList.remove('active')});document.getElementById('beach-capex').classList.add('active')">Инвестиции CAPEX</button>
       </div>
       <div id="beach-finance" class="tab-content active">
         <div class="capex-num">30 000 000 ₽</div>
@@ -1401,8 +1401,8 @@ input[type=range]::-webkit-slider-thumb {
     </div>
     <div class="tabs tabs-dark">
       <div class="tab-buttons">
-        <button class="tab-btn active" onclick="switchTab(this, 'kart-finance')">Финансы</button>
-        <button class="tab-btn" onclick="switchTab(this, 'kart-capex')">Инвестиции CAPEX</button>
+        <button class="tab-btn active" onclick="document.querySelectorAll('#karting .tab-btn').forEach(function(b){b.classList.remove('active')});this.classList.add('active');document.querySelectorAll('#karting .tab-content').forEach(function(c){c.classList.remove('active')});document.getElementById('kart-finance').classList.add('active')">Финансы</button>
+        <button class="tab-btn" onclick="document.querySelectorAll('#karting .tab-btn').forEach(function(b){b.classList.remove('active')});this.classList.add('active');document.querySelectorAll('#karting .tab-content').forEach(function(c){c.classList.remove('active')});document.getElementById('kart-capex').classList.add('active')">Инвестиции CAPEX</button>
       </div>
       <div id="kart-finance" class="tab-content active">
         <div class="capex-num" style="color:var(--white);">66 000 000 ₽</div>
@@ -1932,14 +1932,7 @@ window.toggleAudience = function(card) {
   body.style.opacity = isOpen ? '0' : '1';
 }
 
-// ===================== TABS =====================
-window.switchTab = function(btn, targetId) {
-  const group = btn.closest('.tabs');
-  group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  group.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(targetId).classList.add('active');
-}
+
 
 // ===================== CHARTS =====================
 // Liquidity chart
