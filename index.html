@@ -654,7 +654,7 @@ input[type=range]::-webkit-slider-thumb {
 /* ===================== CAPITALIZATION ===================== */
 #capitalization { background: var(--white); }
 #capitalization .section-title { color: var(--dark); }
-.cap-chart-wrap { margin-bottom: 40px; background: var(--dark); border-radius: 2px; padding: 32px; }
+.cap-chart-wrap { margin-bottom: 40px; background: var(--dark); border-radius: 2px; padding: 20px 24px; height: 320px; }
 
 /* ===================== MANAGEMENT ===================== */
 #management { background: var(--dark); }
@@ -1418,7 +1418,7 @@ input[type=range]::-webkit-slider-thumb {
     <span class="label">Капитализация</span>
     <h2 class="section-title" style="color:var(--dark);">Рост стоимости проекта 2026–2031</h2>
     <div class="cap-chart-wrap">
-      <canvas id="capChart" height="300"></canvas>
+      <canvas id="capChart"></canvas>
     </div>
     <div style="overflow-x:auto;">
       <table class="data-table">
@@ -1914,6 +1914,7 @@ function switchTab(btn, targetId) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { labels: { color: 'rgba(255,255,255,0.7)', font: { family: 'Inter' } } },
         tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString('ru-RU') + ' ₽' } }
