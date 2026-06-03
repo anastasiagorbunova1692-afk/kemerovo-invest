@@ -1530,10 +1530,10 @@ input[type=range]::-webkit-slider-thumb {
       <h3>Рассчитайте вашу доходность</h3>
       <div class="calc-slider-wrap">
         <div class="calc-slider-label">
-          <span>20 000 000 ₽</span><span>191 000 000 ₽</span>
+          <span>20 000 000 ₽</span><span>180 000 000 ₽</span>
         </div>
         <div class="calc-amount" id="calc-amount">20 000 000 ₽</div>
-        <input type="range" id="calc-slider" min="20000000" max="191000000" step="1000000" value="20000000">
+        <input type="range" id="calc-slider" min="1" max="9" step="1" value="1">
       </div>
       <div class="calc-results">
         <div class="calc-result">
@@ -1931,17 +1931,18 @@ const calcShare = document.getElementById('calc-share');
 const calcAnnual = document.getElementById('calc-annual');
 const calc5y = document.getElementById('calc-5y');
 const calcPayback = document.getElementById('calc-payback');
-const TOTAL = 191000000;
 const NET_PROFIT = 42076276;
 
 function updateCalc() {
-  const val = parseInt(slider.value);
-  const share = val / TOTAL * 100;
+  // slider value 1–9 → steps of 20 млн: 20, 40, 60, 80, 100, 120, 140, 160, 180
+  const step = parseInt(slider.value);
+  const val = step * 20000000;
+  const share = step * 10; // 1 step = 10% доли
   const annual = NET_PROFIT * share / 100;
   const five = annual * 5;
   const payback = Math.ceil(val / annual);
   calcAmount.textContent = val.toLocaleString('ru-RU') + ' ₽';
-  calcShare.textContent = share.toFixed(2) + '%';
+  calcShare.textContent = share + '%';
   calcAnnual.textContent = Math.round(annual).toLocaleString('ru-RU') + ' ₽';
   calc5y.textContent = Math.round(five).toLocaleString('ru-RU') + ' ₽';
   calcPayback.textContent = payback + (payback === 1 ? ' год' : payback < 5 ? ' года' : ' лет');
