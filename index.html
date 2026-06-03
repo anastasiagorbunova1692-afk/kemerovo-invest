@@ -1530,7 +1530,7 @@ input[type=range]::-webkit-slider-thumb {
       <h3>Рассчитайте вашу доходность</h3>
       <div class="calc-slider-wrap">
         <div class="calc-slider-label">
-          <span>20 000 000 ₽</span><span>180 000 000 ₽</span>
+          <span>20 000 000 ₽</span><span>191 000 000 ₽</span>
         </div>
         <div class="calc-amount" id="calc-amount">20 000 000 ₽</div>
         <input type="range" id="calc-slider" min="1" max="9" step="1" value="1">
@@ -1932,12 +1932,13 @@ const calcAnnual = document.getElementById('calc-annual');
 const calc5y = document.getElementById('calc-5y');
 const calcPayback = document.getElementById('calc-payback');
 const NET_PROFIT = 42076276;
+// 9 шагов: 8 × 20 млн + финальный шаг 191 млн = 90%
+const CALC_AMOUNTS = [20000000, 40000000, 60000000, 80000000, 100000000, 120000000, 140000000, 160000000, 191000000];
 
 function updateCalc() {
-  // slider value 1–9 → steps of 20 млн: 20, 40, 60, 80, 100, 120, 140, 160, 180
-  const step = parseInt(slider.value);
-  const val = step * 20000000;
-  const share = step * 10; // 1 step = 10% доли
+  const step = parseInt(slider.value) - 1; // 0-based index
+  const val = CALC_AMOUNTS[step];
+  const share = (step + 1) * 10; // 10%, 20%, …, 90%
   const annual = NET_PROFIT * share / 100;
   const five = annual * 5;
   const payback = Math.ceil(val / annual);
